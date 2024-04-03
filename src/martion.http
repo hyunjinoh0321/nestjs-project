@@ -1,0 +1,5 @@
+# 조회
+GET http://localhost:3000/maraton
+
+# 생성
+POST http://localhost:3000/maraton
