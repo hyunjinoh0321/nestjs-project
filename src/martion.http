@@ -6,7 +6,7 @@ POST http://localhost:3000/maraton
 Content-Type: application/json
 
 {
-    "name": "test1",
+    "name": "test2",
     "eventDate": "2024-04-03",
     "eventName": "test event",
     "type": "10K",

@@ -1,6 +1,9 @@
 import { readFile, writeFile } from "fs/promises";
 import { RecordDto } from "./maraton.model";
 import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Maraton, MaratonDocument } from "./maraton.schema";
+import { Model } from "mongoose";
 
 export interface MaratonRepository {
     getAllRecord(): Promise<RecordDto[]>;
@@ -48,4 +51,36 @@ export class MaratonFileRepository implements MaratonRepository {
         records[index] = updateRecord;
         await writeFile(this.FILE_NAME, JSON.stringify(records));
     }    
+}
+
+@Injectable()
+export class MaratonMongoRepository implements MaratonRepository {
+    
+    constructor(@InjectModel(Maraton.name) private maratonModel: Model<MaratonDocument>){}
+
+    async getAllRecord(): Promise<RecordDto[]> {
+        return await this.maratonModel.find().exec();
+    }
+    async createRecord(recordDto: RecordDto) {
+        const createRecord = {
+            ...recordDto,
+            createdDt: new Date(),
+            updatedDt: new Date(),
+        };
+
+        await this.maratonModel.create(createRecord);
+    }
+    async getRecord(id: String): Promise<RecordDto> {
+        return await this.maratonModel.findById(id);
+    }
+
+    async deleteRecord(id: String) {
+        await this.maratonModel.findByIdAndDelete(id);
+    }
+
+    async updateRecord(id: String, recordDto: RecordDto) {
+        const updateRecord = {id, ...recordDto, updatedDate: new Date()};
+        await this.maratonModel.findByIdAndUpdate(id, updateRecord);
+    }
+    
 }

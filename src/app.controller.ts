@@ -9,4 +9,10 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('/test')
+  Test() {
+    console.log(`${__dirname}`);
+    console.log(`../${__dirname}/env/${process.env.NODE_ENV}.env`);
+  }
 }

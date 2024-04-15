@@ -1,0 +1,24 @@
+# 조회
+GET http://localhost:3000/users
+
+### 생성
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "email" :"test@test.com"
+}
+
+### TEST send eamil
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "aingboy",
+    "email" :"ljbaragi@naver.com",
+    "password" :"123456789"
+}
+
+### TEST
+GET http://localhost:3000/test
