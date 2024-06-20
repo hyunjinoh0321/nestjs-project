@@ -12,7 +12,7 @@ export class Maraton {
     name : string;
 
     @Prop()
-    eventDate: Date;
+    eventDate: string;
     
     @Prop()
     eventName: string;

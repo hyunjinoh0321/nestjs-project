@@ -1,0 +1,37 @@
+# 조회
+GET http://localhost:3030/version
+
+### 생성
+POST http://localhost:3030/version
+Content-Type: application/json
+
+{
+    "name": "test2",
+    "eventDate": "2024-04-03",
+    "eventName": "test event",
+    "type": "10K",
+    "record": "55:00:00"
+}
+
+### Getone 
+GET http://localhost:3030/version/66629666d23f4f11a47b98c8
+
+
+### Getone 
+GET http://localhost:3030/version/search/최은우
+
+
+### delete
+DELETE http://localhost:3000/version/1
+
+### update
+PUT http://localhost:3000/version/1
+Content-Type: application/json
+
+{
+    "name": "test1",
+    "eventDate": "2024-04-03",
+    "eventName": "test event2",
+    "type": "10K",
+    "record": "55:00:00"
+}

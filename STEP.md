@@ -2,6 +2,11 @@
 Make API
 의존성 주입
 MongoDB 연결 .. (다양한 DB 연결 시도)
+MySQL 이용(TypeOrM 이용)
+
+## start script 
+Timezone 설정
+TZ=Asia/Seoul
 
 ## 화면 구성
 React 고려
@@ -34,6 +39,9 @@ npm i mysql2
 ## use checking validation
 npm install --save class-validator
 npm install --save class-transformer
+
+## use logger - winston
+npm i nest-winston winston
 
 ## USE NESTJS 
 
@@ -72,3 +80,16 @@ $ git push -u origin main
 
 ## Start MongoDB
 mongod --dbpath e:\Mongo\data
+
+
+## use mysql
+    TypeOrmModule.forRoot({
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: 'daol@2184',
+        database: 'test',
+        entities: [UserEntity],
+        synchronize: false,
+    }),

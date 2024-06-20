@@ -1,7 +1,7 @@
 export interface RecordDto {
      id: string;
      name: string;
-     eventDate: Date;
+     eventDate: string;
      eventName: string;
      type: string; 
      record: string;

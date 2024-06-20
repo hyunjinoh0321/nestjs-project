@@ -1,0 +1,19 @@
+# 조회
+GET http://localhost:3030/projectnaming/grade
+
+
+### 조회
+GET http://localhost:3030/projectnaming/grade/simple
+
+### 생성
+POST http://localhost:3030/projectnaming/grade
+Content-Type: application/json
+
+{
+    "grade" : "위험등급 A",
+    "code": "A"
+}
+
+
+### Getone 
+GET http://localhost:3030/projectnaming/grade/664a97b5a38dd1fa9e2b72e1

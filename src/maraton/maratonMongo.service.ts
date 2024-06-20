@@ -16,6 +16,10 @@ export class MaratonMongoService {
         this.maratonRepository.createRecord(recordDto);
     }
 
+    async getSearchRecord(name) {
+        return await this.maratonRepository.getSearchRecord(name);
+    }
+
     async getRecord(id) {
         return await this.maratonRepository.getRecord(id);
     }

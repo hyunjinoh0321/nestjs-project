@@ -1,10 +1,10 @@
 import { Controller, Param, Body, Delete, Get, Post, Put } from '@nestjs/common';
-import { MaratonFileService } from './maratonFile.service';
+import { MaratonMongoService } from './maratonMongo.service';
 
 @Controller('maraton')
 export class MaratonController {
 
-    constructor(private maratonService : MaratonFileService){}
+    constructor(private maratonService : MaratonMongoService){}
 
     @Get()
     async GetAllRecord() {
@@ -20,6 +20,12 @@ export class MaratonController {
 
         this.maratonService.createRecord(recodeDto);
         return 'success';
+    }
+
+    @Get('/search/:name')
+    async getSearchRecord(@Param('name') name : string) {
+        console.log(`GetRecord : ${name}`);    
+        return await this.maratonService.getSearchRecord(name);   
     }
 
     @Get('/:id')

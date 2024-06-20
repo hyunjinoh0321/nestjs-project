@@ -1,0 +1,16 @@
+# 조회
+GET http://localhost:3030/projectnaming/work
+
+
+### 생성
+POST http://localhost:3030/projectnaming/work
+Content-Type: application/json
+
+{
+    "work" : "DB",
+    "workCode": "DBS"
+}
+
+
+### Getone 
+GET http://localhost:3030/projectnaming/work/664bef41f3177d4543502766

@@ -1,0 +1,24 @@
+# 조회
+GET http://localhost:3030/projectnaming/rule
+
+
+### 생성
+POST http://localhost:3030/projectnaming/rule
+Content-Type: application/json
+
+{
+    "grade" : "E",
+    "workCode" : "BPS",
+    "title" : "테스트다아아아아아",
+    "expectStartDate" : "202405",
+    "expectEndDate" : "202405",
+    "requestDate" : "202405",
+    "requestTeam" : "디지털",
+    "requester" : "최은우",
+    "writer" : "오현진",
+    "outputs" : ["전산요청서"]
+}
+
+
+### Getone 
+GET http://localhost:3030/projectnaming/rule/664c1fe93ed1459d3fccb2ae

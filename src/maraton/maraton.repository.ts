@@ -3,7 +3,7 @@ import { RecordDto } from "./maraton.model";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Maraton, MaratonDocument } from "./maraton.schema";
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 
 export interface MaratonRepository {
     getAllRecord(): Promise<RecordDto[]>;
@@ -16,7 +16,7 @@ export interface MaratonRepository {
 @Injectable()
 export class MaratonFileRepository implements MaratonRepository {
 
-    FILE_NAME = './src/maraton.data.json';
+    FILE_NAME = './src/maraton/maraton.data.json';
 
     async getAllRecord(): Promise<RecordDto[]> {
         const datas = await readFile(this.FILE_NAME, { encoding: 'utf8' });
@@ -61,6 +61,7 @@ export class MaratonMongoRepository implements MaratonRepository {
     async getAllRecord(): Promise<RecordDto[]> {
         return await this.maratonModel.find().exec();
     }
+
     async createRecord(recordDto: RecordDto) {
         const createRecord = {
             ...recordDto,
@@ -70,15 +71,23 @@ export class MaratonMongoRepository implements MaratonRepository {
 
         await this.maratonModel.create(createRecord);
     }
-    async getRecord(id: String): Promise<RecordDto> {
-        return await this.maratonModel.findById(id);
+
+    async getSearchRecord(name:string): Promise<RecordDto[]> {
+        return await this.maratonModel.find(
+            { name : name }
+        ).exec();
     }
 
-    async deleteRecord(id: String) {
+    async getRecord(id: string): Promise<RecordDto> {
+        const objectID = new mongoose.Types.ObjectId(id);
+        return await this.maratonModel.findById(objectID);
+    }
+
+    async deleteRecord(id: string) {
         await this.maratonModel.findByIdAndDelete(id);
     }
 
-    async updateRecord(id: String, recordDto: RecordDto) {
+    async updateRecord(id: string, recordDto: RecordDto) {
         const updateRecord = {id, ...recordDto, updatedDate: new Date()};
         await this.maratonModel.findByIdAndUpdate(id, updateRecord);
     }

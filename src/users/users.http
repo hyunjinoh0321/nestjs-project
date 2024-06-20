@@ -20,5 +20,19 @@ Content-Type: application/json
     "password" :"123456789"
 }
 
+### 조회
+GET http://localhost:3000/users/aingboy
+
+
 ### TEST
 GET http://localhost:3000/test
+
+### TEST send eamil
+POST http://localhost:3000/users/test
+Content-Type: application/json
+
+{
+    "name": "aingboy",
+    "email" :"ljbaragi@naver.com",
+    "password" :"123456789"
+}

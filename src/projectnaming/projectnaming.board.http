@@ -1,0 +1,17 @@
+# 조회
+GET http://localhost:3030/projectnaming/board
+
+
+### 생성
+POST http://localhost:3030/projectnaming/board
+Content-Type: application/json
+
+{
+    "title" : "요구사항 1",
+    "description" : "요구사항",
+    "creator" : "최은우",
+    "comments" : ["test"]
+}
+
+### Getone 
+GET http://localhost:3030/projectnaming/board/66541a4003eacd617fab7702
